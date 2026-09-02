@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黄贺飞 | Personal Homepage</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#0d1117;--bg-card:#161b22;--bg-hover:#1c2128;
+--border:#30363d;--text:#c9d1d9;--text-muted:#8b949e;
+--accent:#58a6ff;--accent-dim:#1f6feb;
+--green:#3fb950;--orange:#d29922;--red:#f85149;--purple:#bc8cff;
+}
+html{scroll-behavior:smooth}
+body{
+font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;
+-webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:#79c0ff}
+
+/* Navigation */
+nav{
+position:sticky;top:0;z-index:100;
+background:rgba(13,17,23,.85);backdrop-filter:blur(12px);
+border-bottom:1px solid var(--border);
+}
+.nav-inner{
+max-width:960px;margin:0 auto;
+display:flex;align-items:center;justify-content:space-between;
+padding:.8rem 1.5rem;
+}
+.logo{font-size:1.1rem;font-weight:700;color:var(--text)}
+.nav-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.nav-links a{font-size:.9rem;color:var(--text-muted)}
+.nav-links a:hover{color:var(--text)}
+
+/* Hero / About */
+.hero{
+max-width:960px;margin:0 auto;padding:4rem 1.5rem 3rem;
+display:flex;gap:3rem;align-items:flex-start;flex-wrap:wrap;
+}
+.avatar-wrap{flex-shrink:0}
+.avatar{
+width:160px;height:160px;border-radius:50%;
+background:linear-gradient(135deg,#1f6feb,#bc8cff);
+display:flex;align-items:center;justify-content:center;
+font-size:3.5rem;color:#fff;font-weight:700;
+border:3px solid var(--border);box-shadow:0 0 30px rgba(88,166,255,.15);
+}
+.hero-info{flex:1;min-width:280px}
+.hero-info h1{font-size:1.8rem;color:var(--text);margin-bottom:.3rem}
+.hero-info .subtitle{color:var(--text-muted);font-size:1rem;margin-bottom:1rem}
+.contact-bar{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.contact-bar a,.contact-bar span{
+display:inline-flex;align-items:center;gap:.4rem;
+font-size:.85rem;color:var(--text-muted);
+padding:.35rem .8rem;background:var(--bg-card);border-radius:20px;
+border:1px solid var(--border);transition:all .25s;
+}
+.contact-bar a:hover{border-color:var(--accent);color:var(--accent);background:var(--bg-hover)}
+.contact-bar svg{width:14px;height:14px;fill:currentColor}
+.contact-bar .icon-email{fill:var(--green)}
+.contact-bar .icon-phone{fill:var(--accent)}
+.contact-bar .icon-github{fill:#fff}
+.contact-bar .icon-scholar{fill:var(--orange)}
+
+/* Sections */
+.section{
+max-width:960px;margin:0 auto;padding:2rem 1.5rem;
+}
+.section-title{
+font-size:1.25rem;font-weight:600;color:var(--text);
+margin-bottom:1.2rem;padding-bottom:.5rem;
+border-bottom:1px solid var(--border);
+display:flex;align-items:center;gap:.5rem;
+}
+.section-title .emoji{font-size:1.1rem}
+
+/* About */
+.about-text{font-size:.95rem;color:var(--text);line-height:1.8}
+.about-text strong{color:var(--text);font-weight:600}
+
+/* News */
+.news-list{list-style:none}
+.news-item{
+display:flex;gap:1rem;padding:.7rem 0;
+border-bottom:1px solid rgba(48,54,61,.5);
+align-items:flex-start;
+}
+.news-item:last-child{border-bottom:none}
+.news-date{
+font-size:.8rem;color:var(--accent);font-weight:600;
+min-width:85px;padding-top:.15rem;flex-shrink:0;
+}
+.news-text{font-size:.9rem;line-height:1.6}
+.news-text .tag{
+display:inline-block;font-size:.7rem;padding:.15rem .5rem;
+border-radius:10px;margin:0 .2rem;font-weight:600;
+}
+.tag-paper{background:rgba(63,185,80,.15);color:var(--green)}
+.tag-award{background:rgba(210,153,34,.15);color:var(--orange)}
+.tag-release{background:rgba(88,166,255,.15);color:var(--accent)}
+
+/* Publications */
+.pub-tabs{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.pub-tab{
+padding:.35rem .9rem;border-radius:16px;font-size:.78rem;
+border:1px solid var(--border);background:transparent;cursor:pointer;
+color:var(--text-muted);transition:all .2s;
+}
+.pub-tab.active,.pub-tab:hover{
+background:var(--bg-card);border-color:var(--accent);color:var(--text);
+}
+.pub-list{list-style:none}
+.pub-item{
+display:flex;gap:1.2rem;padding:1.2rem 0;
+border-bottom:1px solid rgba(48,54,61,.5);
+transition:background .2s;
+}
+.pub-item:last-child{border-bottom:none}
+.pub-num{
+font-size:.85rem;color:var(--text-muted);font-weight:700;
+min-width:24px;padding-top:.1rem;flex-shrink:0;
+}
+.pub-img{
+width:120px;height:75px;border-radius:8px;overflow:hidden;
+border:1px solid var(--border);flex-shrink:0;background:var(--bg-card);
+display:flex;align-items:center;justify-content:center;font-size:1.8rem;
+}
+.pub-img img{width:100%;height:100%;object-fit:cover}
+.pub-body{flex:1;min-width:0}
+.pub-title{font-size:.92rem;font-weight:600;color:var(--text);margin-bottom:.25rem;line-height:1.4}
+.pub-title a:hover{text-decoration:underline}
+.pub-authors{font-size:.8rem;color:var(--text-muted);margin-bottom:.25rem;line-height:1.5}
+.pub-authors .me{color:var(--accent);font-weight:600}
+.pub-venue{font-size:.8rem;color:var(--text-muted);margin-bottom:.35rem}
+.pub-venue .venue-name{color:var(--orange);font-style:italic;font-weight:500}
+.pub-venue .venue-tag{
+display:inline-block;font-size:.65rem;padding:.1rem .45rem;
+border-radius:8px;font-weight:600;margin-left:.3rem;
+}
+.tag-oral{background:rgba(248,81,73,.15);color:var(--red)}
+.tag-spotlight{background:rgba(188,140,255,.15);color:var(--purple)}
+.tag-highlight{background:rgba(88,166,255,.15);color:var(--accent)}
+.pub-links{display:flex;gap:.6rem;flex-wrap:wrap}
+.pub-links a{
+font-size:.75rem;padding:.2rem .65rem;border:1px solid var(--border);
+border-radius:12px;color:var(--text-muted);transition:all .2s;
+display:inline-flex;align-items:center;gap:.3rem;
+}
+.pub-links a:hover{border-color:var(--accent);color:var(--accent)}
+.pub-links svg{width:11px;height:11px;fill:currentColor}
+
+/* Education / Experience */
+.timeline{list-style:none}
+.timeline-item{
+position:relative;padding-left:1.5rem;padding-bottom:1.5rem;
+border-left:2px solid var(--border);
+}
+.timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.timeline-item::before{
+content:'';position:absolute;left:-5px;top:.4rem;
+width:8px;height:8px;border-radius:50%;background:var(--accent);
+border:2px solid var(--bg);
+}
+.timeline-date{font-size:.78rem;color:var(--accent);font-weight:600;margin-bottom:.2rem}
+.timeline-title{font-size:.92rem;font-weight:600;color:var(--text);margin-bottom:.15rem}
+.timeline-subtitle{font-size:.82rem;color:var(--text-muted);margin-bottom:.35rem}
+.timeline-desc{font-size:.85rem;color:var(--text);line-height:1.65}
+
+/* Footer */
+.footer{
+text-align:center;padding:2rem 1.5rem;color:var(--text-muted);
+font-size:.75rem;border-top:1px solid var(--border);margin-top:2rem;
+}
+
+/* Responsive */
+@media(max-width:640px){
+.hero{flex-direction:column;align-items:center;text-align:center;padding:2.5rem 1.2rem 2rem}
+.avatar{width:120px;height:120px;font-size:2.8rem}
+.hero-info h1{font-size:1.5rem}
+.contact-bar{justify-content:center}
+.pub-item{flex-direction:column}
+.pub-img{width:100%;height:120px}
+}
+</style>
+<script>
+// Publication filter
+function filterPub(btn,cat){
+document.querySelectorAll('.pub-tab').forEach(t=>t.classList.remove('active'));
+btn.classList.add('active');
+document.querySelectorAll('.pub-item').forEach(item=>{
+if(cat==='all'||item.dataset.cat.includes(cat)){
+item.style.display='flex';
+}else{
+item.style.display='none';
+}
+});
+}
+</script>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+<span class="logo">黄贺飞</span>
+<div class="nav-links">
+<a href="#about">About</a>
+<a href="#publications">Publications</a>
+<a href="#experience">Experience</a>
+<a href="#education">Education</a>
+</div>
+</div>
+</nav>
+
+<!-- Hero / About -->
+<section class="hero" id="about" style="padding-top:calc(20vh)">
+<div class="avatar-wrap">
+<div class="avatar"><img src="./img/hhf2.png" alt="Hefei Huang" style="width:100%;height:100%;border-radius:50%;object-fit:cover"></div>
+</div>
+<div class="hero-info">
+<h1 style="margin-bottom:.15rem">Hefei Huang</h1>
+<p style="font-size:1rem;color:var(--text-muted);margin-bottom:.8rem">黄贺飞</p>
+<p class="subtitle">Ph.D. Candidate in Information & Communication Engineering, Dalian University of Technology</p>
+<div class="contact-bar">
+<a href="mailto:2227975481@qq.com">Email: 2227975481@qq.com</a>
+<span>WeChat: 15524808188</span>
+</div>
+</div>
+</section>
+
+<!-- About Me -->
+<section class="section" id="about-me">
+<h2 class="section-title"><span class="emoji">👤</span>About Me</h2>
+<p class="about-text">
+I am currently a <strong>Ph.D. candidate</strong> in <em>Information and Communication Engineering</em> at <strong>Dalian University of Technology</strong>. 
+My research interests include <strong>event-based vision</strong>, <strong>visual enhancement and tracking</strong>, <strong>autonomous driving</strong>, and <strong>VLM post-training</strong>.
+</p>
+</section>
+
+
+<!-- Publications -->
+<section class="section" id="publications">
+<h2 class="section-title"><span class="emoji">📄</span>Selected Publications</h2>
+<div class="pub-tabs">
+<button class="pub-tab active" onclick="filterPub(this,'all')">All</button>
+<button class="pub-tab" onclick="filterPub(this,'Autonomous Driving')">Autonomous Driving</button>
+<button class="pub-tab" onclick="filterPub(this,'Event-based Vision')">Event-based Vision</button>
+<button class="pub-tab" onclick="filterPub(this,'Tracking')">Tracking</button>
+<button class="pub-tab" onclick="filterPub(this,'Image Restoration')">Image Restoration</button>
+</div>
+<ul class="pub-list">
+<li class="pub-item" data-cat="Autonomous Driving">
+<span class="pub-num">1.</span>
+<div class="pub-img"><img src="./img/LVC.png" alt="LVC architecture"></div>
+<div class="pub-body">
+<div class="pub-title">LVC: Augmenting Autonomous Driving via Language-based V2V Cooperation</div>
+<div class="pub-authors"><strong>Hefei Huang</strong>, et al.</div>
+<div class="pub-venue"><span class="venue-name">AAAI</span>, 2027 (Under Review)</div>
+</div>
+</li>
+<li class="pub-item" data-cat="Event-based Vision">
+<span class="pub-num">2.</span>
+<div class="pub-img"><img src="./img/rolling2.png" alt="Event-Guided Rolling Shutter Correction"></div>
+<div class="pub-body">
+<div class="pub-title"><a href="https://dl.acm.org/doi/10.1145/3664647.3680640" target="_blank" rel="noopener">Event-Guided Rolling Shutter Correction with Time-Aware Cross-Attentions</a></div>
+<div class="pub-authors"><strong>Hefei Huang</strong>, Xu Jia, Xinyu Zhang, Shengming Li, Huchuan Lu</div>
+<div class="pub-venue"><span class="venue-name">ACM MM</span>, 2024</div>
+</div>
+</li>
+<li class="pub-item" data-cat="Tracking Event-based Vision">
+<span class="pub-num">3.</span>
+<div class="pub-img"><img src="./img/motion.png" alt="Motion-Guided Query-based Transformer"></div>
+<div class="pub-body">
+<div class="pub-title">Motion-Guided Query-based Transformer for Visible-Event Tracking</div>
+<div class="pub-authors"><strong>Hefei Huang</strong>, Xu Jia, Pengyu Zhang, Chuanyu Sun, Zeren Wang, Keru Li, Xin Yang, Lihe Zhang, Dong Wang, Huchuan Lu</div>
+<div class="pub-venue"><span class="venue-name">ICME</span>, 2026</div>
+</div>
+</li>
+<li class="pub-item" data-cat="Tracking Event-based Vision">
+<span class="pub-num">4.</span>
+<div class="pub-img"><img src="./img/mul-stage.png" alt="MSFNet Multi-Stage Fusion"></div>
+<div class="pub-body">
+<div class="pub-title"><a href="https://ieeexplore.ieee.org/abstract/document/10687995" target="_blank" rel="noopener">MSFNet: Multi-Stage Fusion for Event-based Multimodal Tracker</a></div>
+<div class="pub-authors">Co-first author: Xinyu Zhang, <strong>Hefei Huang</strong>, Xu Jia, Wenyue Chen, Dong Wang, Shengming Li, Huchuan Lu</div>
+<div class="pub-venue"><span class="venue-name">ICME</span>, 2024</div>
+</div>
+</li>
+<li class="pub-item" data-cat="Event-based Vision Image Restoration">
+<span class="pub-num">5.</span>
+<div class="pub-img"><img src="./img/nire.png" alt="Neural Image Re-exposure"></div>
+<div class="pub-body">
+<div class="pub-title"><a href="https://www.sciencedirect.com/science/article/abs/pii/S1077314224001759" target="_blank" rel="noopener">Neural Image Re-exposure</a></div>
+<div class="pub-authors">Co-first author: Xinyu Zhang, <strong>Hefei Huang</strong>, Xu Jia, Dong Wang, Lihe Zhang, Bolun Zheng, Wei Zhou, Huchuan Lu</div>
+<div class="pub-venue"><span class="venue-name">CVIU</span>, 2024</div>
+</div>
+</li>
+</ul>
+</section>
+
+<!-- Experience -->
+<section class="section" id="experience">
+<h2 class="section-title"><span class="emoji">💼</span>Internship Experience</h2>
+<ul class="timeline">
+<li class="timeline-item">
+<div class="timeline-date">2026.08 – Present</div>
+<div class="timeline-title">Qianli Technology, Pre-research Department · Research Algorithm Intern</div>
+<div class="timeline-subtitle">Project: Temporal VLA for Autonomous Driving</div>
+<p class="timeline-desc">Fusing historical temporal information to address single-frame VLA limitations: insufficient occlusion recovery, behavioral jitter, and low intent prediction accuracy. Designed rule-based temporal data mining, auxiliary supervision heads for motion features, and LLM-based motion sequence understanding with scene consistency loss.</p>
+</li>
+<li class="timeline-item">
+<div class="timeline-date">2022.10 – 2023.05</div>
+<div class="timeline-title">Huawei 2012 Lab · Research Algorithm Intern</div>
+<div class="timeline-subtitle">Project: Nighttime Traffic Monitoring Image Deblurring</div>
+<p class="timeline-desc">Addressed low-light, long-exposure motion blur in traffic surveillance. Developed event-guided image restoration with simulated event data generation, real event stream denoising, Sim2Real distribution alignment, and hybrid supervised/unsupervised training. Achieved SOTA performance with ~7% Laplacian variance improvement and ~10% NIQE reduction.</p>
+</li>
+</ul>
+</section>
+
+<!-- Education -->
+<section class="section" id="education">
+<h2 class="section-title"><span class="emoji">🎓</span>Education</h2>
+<ul class="timeline">
+<li class="timeline-item">
+<div class="timeline-date">2023.09 – Present</div>
+<div class="timeline-title">Dalian University of Technology (DUT) · Ph.D.</div>
+<div class="timeline-subtitle">Information & Communication Engineering</div>
+</li>
+<li class="timeline-item">
+<div class="timeline-date">2021.09 – 2023.06</div>
+<div class="timeline-title">Dalian University of Technology (DUT) · M.S.</div>
+<div class="timeline-subtitle">Information & Communication Engineering</div>
+</li>
+<li class="timeline-item">
+<div class="timeline-date">2017.09 – 2021.06</div>
+<div class="timeline-title">Dalian University of Technology (DUT) · B.S.</div>
+<div class="timeline-subtitle">Computer Science & Technology</div>
+</li>
+</ul>
+</section>
+
+<div class="footer">
+<p>© 2026 黄贺飞 · Inspired by <a href="https://junsongc.top/" target="_blank">Junsong Chen</a>'s homepage</p>
+</div>
+
+</body>
+</html>
